@@ -15,6 +15,7 @@ import psycopg2.extras
 from datetime import datetime, timezone
 
 def get_all_statuses():
+    connect1 = psycopg2.connect(host=HOST_DB, port=PORT_DB, user= USER, password= DB_PASS)
     dict_cur = connect1.cursor(cursor_factory=psycopg2.extras.DictCursor)
     dict_cur.execute(f"SELECT * FROM pg_stat_activity")
     tmp = dict_cur.fetchall()
