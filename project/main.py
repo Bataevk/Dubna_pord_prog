@@ -62,10 +62,14 @@ async def listen(message: types.Message):
     # тут надо проверить как дела и отправит ответ
     # С помощью этого кусочка можно подписаться на бота 
     # когда что-то слоаматется таким образом всех оповестить
-    if is_fine('test') != True:
-    # if что-то сломалось, то:
-        for _id in listeners:
-            await bot.send_message(_id, check('test'))
+    while listening:
+        sleep(15)
+        if len(listeners) == 0:
+            listening = False
+        if is_fine('test') != True:
+       # if что-то сломалось, то:
+            for _id in listeners:
+                await bot.send_message(_id, check('test'))
 
 
 # @dp.message(Command("stat_db"))
