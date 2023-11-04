@@ -30,11 +30,17 @@ def get_status(db_name):
             return db
 
 def how_long_since(datetime_obj):
-
     t = datetime.now(timezone.utc).replace(microsecond=0)
     datetime_obj = datetime_obj.replace(microsecond=0)
     result = t - datetime_obj
     return result
+
+def is_fine(db_name):
+    tmp = get_status(db_name)
+    if tmp['state'] != 'idle':
+        return tmp['state']
+    else:
+        return True
 
 def check(db_name):
     tmp = get_status(db_name)
