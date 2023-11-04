@@ -2,7 +2,8 @@ import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters.command import Command
-from index import print_columns
+#from Services.test_connection import print_columns
+from Services.config_DB import init_config
 
 S_KEY = '6509438376:AAGSd-5pyyVl2PTbCOhlDn7KW-R6j2Dhwh0'
 
@@ -23,14 +24,15 @@ async def help(message: types.Message):
     await message.answer("/stat_db - вывести всю статистику \n/help - помощь", reply_markup=markup)
 
 
-@dp.message(Command("stat_db"))
-async def cmd_col(message: types.Message):
-    all = print_columns()
-    for row in all:
-        await message.answer(row, reply_markup=markup)
+# @dp.message(Command("stat_db"))
+# async def cmd_col(message: types.Message):
+#     all = print_columns()
+#     for row in all:
+#         await message.answer(row, reply_markup=markup)
 
 async def main():
-    await dp.start_polling(bot)
+    init_config()
+   # await dp.start_polling(bot)
 
 
 kb = [
