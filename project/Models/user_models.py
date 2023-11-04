@@ -53,8 +53,9 @@ class DbConnection(Base):
     username = Column(String(100), nullable=True)
     userpassword = Column(String(100), nullable=True)
 
-class Auth_log:
+class Auth_log(Base):
     __tablename__ = "auth_log"
-    user_id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer)
     date_time = Column(DateTime, nullable=False)
 
