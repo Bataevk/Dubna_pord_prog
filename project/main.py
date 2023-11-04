@@ -39,7 +39,7 @@ async def main():
     bob1 = User(name ="sss1", password = "lol",email =None,phonenumber = None, telegrm_id = None)
     add_user(bob)
     add_user(bob1)
-    print(get_user("sss1","lol").user_connections)
+    print(get_user("sss1").user_connections)
    # await dp.start_polling(bot)
 
 

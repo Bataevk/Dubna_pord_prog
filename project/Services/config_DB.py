@@ -12,12 +12,12 @@ def get_user(login):
         return db.query(User).filter(User.name == login).first()
 def add_user(user:User):
    with Session(autoflush=False, bind=engine) as db:
-       if get_user(user.login) is None:
+       if get_user(user.name) is None:
         db.add(user)
         db.commit()     
 def remove_user(user:User):
    with Session(autoflush = False, bind=engine) as db:
-       if get_user(user.login) is not None:
+       if get_user(user.name) is not None:
         db.add(user)
         db.commit() 
 
