@@ -96,14 +96,17 @@ async def listen(message: types.Message):
     if check_access(message):
         listeners.add(message.from_user.id)
         print(listeners)
-
+        listening = True
+        if len(listeners) == 0:
+            listening=False
         # тут надо проверить как дела и отправит ответ
         # С помощью этого кусочка можно подписаться на бота 
         # когда что-то слоаматется таким образом всех оповестить
 
         # if что-то сломалось, то:
-        for _id in listeners:
-            await bot.send_message(_id, "Privet")
+        while listening:
+            for _id in listeners:
+                await bot.send_message(_id, "Privet")
     else:
         await message.answer(text_not_access)
 
