@@ -4,6 +4,9 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters.command import Command
 #from Services.test_connection import print_columns
 from Services.config_DB import init_config
+from Services.config_DB import add_user
+from Services.config_DB import get_user
+from Models.user_models import User
 
 S_KEY = '6509438376:AAGSd-5pyyVl2PTbCOhlDn7KW-R6j2Dhwh0'
 
@@ -32,6 +35,11 @@ async def help(message: types.Message):
 
 async def main():
     init_config()
+    bob = User(name ="sss", password = "lol",email =None,phonenumber = None, telegrm_id = None)
+    bob1 = User(name ="sss1", password = "lol",email =None,phonenumber = None, telegrm_id = None)
+    add_user(bob)
+    add_user(bob1)
+    print(get_user("sss1","lol").user_connections)
    # await dp.start_polling(bot)
 
 
