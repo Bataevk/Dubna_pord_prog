@@ -8,6 +8,7 @@ from Services.config_DB import add_user
 from Services.config_DB import get_user
 from Models.user_models import User
 from Services.sys_status import start_thread, stop_thread, create_image
+from Services.check_db_status import is_fine
 from Services import Auth as auth
 from aiogram.types import FSInputFile
 from time import sleep
@@ -61,10 +62,10 @@ async def listen(message: types.Message):
     # тут надо проверить как дела и отправит ответ
     # С помощью этого кусочка можно подписаться на бота 
     # когда что-то слоаматется таким образом всех оповестить
-
+    if is_fine('test') != True:
     # if что-то сломалось, то:
-    for _id in listeners:
-        await bot.send_message(_id, "Privet")
+        for _id in listeners:
+            await bot.send_message(_id, "Privet")
 
 
 # @dp.message(Command("stat_db"))
