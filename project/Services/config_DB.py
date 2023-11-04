@@ -20,3 +20,4 @@ def remove_user(user:User):
        if get_user(user.login) is not None:
         db.add(user)
         db.commit() 
+

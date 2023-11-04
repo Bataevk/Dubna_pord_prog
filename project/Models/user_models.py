@@ -57,3 +57,4 @@ class Auth:
     __tablename__ = "auth"
     user_id = Column(Integer, primary_key=True)
     date_time = Column(DateTime, nullable=False)
+
