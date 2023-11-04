@@ -36,11 +36,9 @@ def check_user(user: User, password):
 def check_session(name, password):
     user = get_user(name)
     if check_user(user, password):
-        add_session()
+        add_session(user.id)
         return True
     return False
-
-def check_session(id):
-    if (get_session(id, delta_time = 12)):
-        return True
-    return False
+    
+def check_session(id): # id_user
+    return True #get_session(id, delta_time = 12) # Кол-во часов
