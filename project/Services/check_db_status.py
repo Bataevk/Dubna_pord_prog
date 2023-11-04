@@ -12,7 +12,7 @@ DB_PASS = '123451515' #Пароль от пользователя
 
 
 import psycopg2.extras
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 def get_all_statuses():
     connect1 = psycopg2.connect(host=HOST_DB, port=PORT_DB, user= USER, password= DB_PASS)
@@ -38,7 +38,7 @@ def how_long_since(datetime_obj):
 
 def is_fine(db_name):
     tmp = get_status(db_name)
-    if tmp['state'] != 'idle':
+    if tmp['state'] != 'idle' and how_long_since(get_status('test')['state_change']) > timedelta(minutes=1):
         return tmp['state']
     else:
         return True
