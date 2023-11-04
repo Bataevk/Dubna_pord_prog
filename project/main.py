@@ -65,7 +65,7 @@ async def listen(message: types.Message):
     if is_fine('test') != True:
     # if что-то сломалось, то:
         for _id in listeners:
-            await bot.send_message(_id, "Privet")
+            await bot.send_message(_id, check('test'))
 
 
 # @dp.message(Command("stat_db"))
