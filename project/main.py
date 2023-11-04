@@ -8,6 +8,7 @@ from Services.config_DB import add_user
 from Services.config_DB import get_user
 from Models.user_models import User
 from Services.sys_status import start_thread, stop_thread, create_image
+from Services import Auth as auth
 from aiogram.types import FSInputFile
 from time import sleep
 
@@ -33,6 +34,18 @@ async def system(message: types.Message):
     create_image()
     system = FSInputFile('system.png')
     await bot.send_photo(message.from_user.id, system)
+
+
+@dp.message(Command("sign_in"))
+async def cmd_col(message: types.Message):
+    lines = message.text.split(" ")
+    if len(lines) >= 2:
+        if (auth.check_session(lines[1], lines[2])):
+            await message.answer("Вход выполнен")
+            return
+        await message.answer("Неверный логин или пароль!")
+        return
+    await message.answer("Команда некорректна")
 
 
 
