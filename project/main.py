@@ -86,7 +86,33 @@ async def log_out(message):
     else:
         await message.answer(text_not_access)
 
+@dp.message(Command("buttons"))
+async def log_out(message):
+    if (check_access(message)):
+        keyboard = InlineKeyboardBuilder()
+        keyboard.button(text = "Кнопка 1", callback_data="button1")
+        keyboard.button(text = "Кнопка 2", callback_data="button2")
+        
+        await message.answer("Выберите действие:", reply_markup=keyboard.as_markup())
+    else:
+        await message.answer(text_not_access)
 
+@dp.callback_query()
+async def process_callback_data(callback_query: types.CallbackQuery):
+    # Здесь вы можете обработать callback_data, например, получить его и сделать что-то с ним
+    callback_data = callback_query.data
+    # print(callback_data)
+    answer = ""
+    match callback_data:
+        case "button1":
+            answer = "Вы нажади на кнопку 1!"
+        case "button2":
+            answer = "Вы нажади на кнопку 2!"
+        case _:
+            answer = "Неизвестная кнопка"
+
+    # await callback_query.answer(text=answer) # Клевая фича
+    await bot.send_message(callback_query.from_user.id, answer)
 
 listening = False
 listeners = set()
